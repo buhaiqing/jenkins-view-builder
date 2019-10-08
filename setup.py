@@ -32,7 +32,7 @@ config = {
         'cliff',
         'PyYAML',
         'argparse',
-        'cmd2',
+        # 'cmd2',
         'prettytable',
         'pyparsing',
         'six',
