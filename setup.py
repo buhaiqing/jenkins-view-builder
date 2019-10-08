@@ -1,7 +1,7 @@
 
 PROJECT = 'jenkins-view-builder'
 
-VERSION = '0.7.2'
+VERSION = '0.7.2-hdops'
 
 try:
     from setuptools import setup, find_packages
@@ -17,8 +17,8 @@ config = {
     'author': 'Piyush Srivastava',
     'author_email': 'piyush.0101@gmail.com',
 
-    'url': 'https://github.com/piyush0101/jenkins-view-builder',
-    'download_url': 'https://github.com/piyush0101/jenkins-view-builder/archive/0.7.2.tar.gz',
+    'url': 'https://github.com/buhaiqing/jenkins-view-builder',
+    # 'download_url': 'https://github.com/piyush0101/jenkins-view-builder/archive/0.7.2.tar.gz',
 
     'classifiers': [],
 
