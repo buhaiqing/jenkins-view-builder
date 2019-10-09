@@ -26,29 +26,31 @@ def krb_request(request_fn, config):
 
 
 def post(url, payload, config,view_name):
-    from jenkins import Jenkins
-    jenkins_server=Jenkins(url,config['user'],config['password'])
-    jenkins_server.create_view(view_name,payload)
-    # do_post = partial(requests.post, url,
-    #                   data=payload,
-    #                   headers=headers,
-    #                   verify=False)
-    # response = krb_request(do_post, config)
-    # if response is not None and response.status_code != 200:
-    #     print(response.text)
+    do_post = partial(requests.post, url,
+                      data=payload,
+                      headers=headers,
+                      verify=False)
+    response = krb_request(do_post, config)
+    if response is not None and response.status_code != 200:
+        print(response.text)
 
 
 def update(config, view_name, view_xml):
-        get_url = config['url'] + '/view/%s' % view_name
-        create_url = config['url'] + '/createView?name=%s' % view_name
-        update_url = get_url + '/config.xml'
-
-        do_get = partial(requests.get, get_url, verify=False)
-        response = krb_request(do_get, config)
-        if response is not None:
-            if response.status_code != 200:
-                print("Creating view %s" % view_name)
-                post(create_url, view_xml, config,view_name)
-            else:
-                print("Updating view %s" % view_name)
-                post(update_url, view_xml, config,view_name)
+    from jenkins import Jenkins
+    jenkins_server = Jenkins(config['url'], config['user'], config['password'])
+    if jenkins_server.view_exists(view_name):
+        jenkins_server.delete_view(view_name)
+    jenkins_server.create_view(view_name, view_xml)
+        # get_url = config['url'] + '/view/%s' % view_name
+        # create_url = config['url'] + '/createView?name=%s' % view_name
+        # update_url = get_url + '/config.xml'
+        #
+        # do_get = partial(requests.get, get_url, verify=False)
+        # response = krb_request(do_get, config)
+        # if response is not None:
+        #     if response.status_code != 200:
+        #         print("Creating view %s" % view_name)
+        #         post(create_url, view_xml, config,view_name)
+        #     else:
+        #         print("Updating view %s" % view_name)
+        #         post(update_url, view_xml, config,view_name)
