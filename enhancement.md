@@ -1,9 +1,11 @@
 ## 改进点
-- 去除对cmd2依赖(只能用于Python3.5以上的版本)
+- 提供Python2支持，去除对cmd2依赖(只能用于Python3.5以上的版本)
+- view 支持中文名
+
 
 ## 常见问题
 ### 中文名支持
-- view 中含有中文 -   *不支持*
+- view 中含有中文 -   *已支持*
 - job 中含有中文  -  *支持*
 
 ### no valid crumb was included in the request解决
