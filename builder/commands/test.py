@@ -28,13 +28,15 @@ class Test(Command):
         return parser
 
     def take_action(self, parsed_args):
+        import io
+        import six
         out_dir = parsed_args.out_dir
         if os.path.isdir(out_dir):
             shutil.rmtree(out_dir, ignore_errors=True)
         os.makedirs(out_dir)
         for yaml_filename in parsed_args.yaml:
             self.log.debug("Testing view file %s" % yaml_filename)
-            with open(os.path.join(yaml_filename), 'r') as yaml_file:
+            with io.open(os.path.join(yaml_filename), 'r',encoding='utf-8') as yaml_file:
                 yaml = yaml_file.read()
                 self.log.debug(yaml)
 
@@ -42,7 +44,7 @@ class Test(Command):
                 xmls = convert_to_xml(yaml)
             except Exception as e:
                 raise(e)
-            if isinstance(xmls[0], str):
+            if isinstance(xmls[0], six.string_types):
                 name, xml = xmls
                 with open(os.path.join(out_dir, name + ".xml"), 'wb') as xml_file:
                     xml_file.write(xml)

@@ -37,6 +37,7 @@ config = {
         'pyparsing',
         'six',
         'stevedore',
+        'python-jenkins',
         'requests'
     ],
 
