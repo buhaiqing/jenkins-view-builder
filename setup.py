@@ -47,6 +47,7 @@ config = {
     'entry_points': {
         'console_scripts': [
             'jenkins-view-builder = builder.main:main',
+            'jvb = builder.main:main',
         ],
         'builder.commands': [
             'simple = builder.commands.simple:Simple',
