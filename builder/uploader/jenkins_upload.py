@@ -25,14 +25,17 @@ def krb_request(request_fn, config):
     return response
 
 
-def post(url, payload, config):
-    do_post = partial(requests.post, url,
-                      data=payload,
-                      headers=headers,
-                      verify=False)
-    response = krb_request(do_post, config)
-    if response is not None and response.status_code != 200:
-        print(response.text)
+def post(url, payload, config,view_name):
+    from jenkins import Jenkins
+    jenkins_server=Jenkins(url,config['user'],config['password'])
+    jenkins_server.create_view(view_name,payload)
+    # do_post = partial(requests.post, url,
+    #                   data=payload,
+    #                   headers=headers,
+    #                   verify=False)
+    # response = krb_request(do_post, config)
+    # if response is not None and response.status_code != 200:
+    #     print(response.text)
 
 
 def update(config, view_name, view_xml):
@@ -45,7 +48,7 @@ def update(config, view_name, view_xml):
         if response is not None:
             if response.status_code != 200:
                 print("Creating view %s" % view_name)
-                post(create_url, view_xml, config)
+                post(create_url, view_xml, config,view_name)
             else:
                 print("Updating view %s" % view_name)
-                post(update_url, view_xml, config)
+                post(update_url, view_xml, config,view_name)

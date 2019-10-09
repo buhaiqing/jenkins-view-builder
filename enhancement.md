@@ -1,6 +1,7 @@
 ## 改进点
 - 提供Python2支持，去除对cmd2依赖(只能用于Python3.5以上的版本)
 - view 支持中文名(源库至支持Python3，代码上对同时支持Python2/Python str的代码不规范)
+- 使用python-jenkins库，解决CSRF protection问题
 
 
 ## 常见问题
