@@ -1,7 +1,7 @@
 
 PROJECT = 'jenkins-view-builder'
 
-VERSION = '0.7.2-hdops'
+VERSION = '0.7.3-hdops'
 
 try:
     from setuptools import setup, find_packages

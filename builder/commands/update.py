@@ -36,14 +36,17 @@ class Update(Command):
         return parser
 
     def read_update(self, config, view_yaml):
-        with open(view_yaml, 'r') as yaml_file:
-            yaml = yaml_file.read()
-            self.log.debug(yaml)
+        import io
+        import six
+        with io.open(view_yaml, 'r',encoding='utf-8') as yaml_file:
+            _yaml = yaml_file.read()
+            self.log.debug(_yaml)
             try:
-                xmls = convert_to_xml(yaml)
+                xmls = convert_to_xml(_yaml)
             except Exception as e:
                 raise(e)
-            if isinstance(xmls[0], str):
+
+            if isinstance(xmls[0], six.string_types) :
                 name, xml = xmls
                 self.log.debug(xml)
                 update(config, name, xml)
