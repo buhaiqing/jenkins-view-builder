@@ -1,4 +1,4 @@
-[![Build Status](https://snap-ci.com/piyush0101/jenkins-view-builder/branch/master/build_image)](https://snap-ci.com/piyush0101/jenkins-view-builder/branch/master)
+
 
 jenkins-view-builder
 ====================
@@ -12,7 +12,7 @@ Installation
 Install jenkins-view-builder at a system level or in an isolated virtualenv by running the
 following command:
 
-        pip install jenkins-view-builder
+        pip install git+https://github.com/buhaiqing/jenkins-view-builder.git  
 
 Usage
 ---
