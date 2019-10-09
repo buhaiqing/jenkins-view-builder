@@ -10,7 +10,7 @@ except ImportError:
 
 config = {
     'name': 'jenkins-view-builder',
-    'version': '0.7.2',
+    'version': VERSION,
 
     'description': 'Build jenkins views in YAML',
 
